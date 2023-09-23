@@ -11,7 +11,7 @@ body {
     background-size: cover;
 }
 #name-model {
-    width: 400px; /*너비*/
+    width: 450px; /*너비*/
     height: 300px; /*높이*/
     background-color: #B9B4C7;
     border-radius: 30px; /* 모서리를 둥글게*/
@@ -27,5 +27,39 @@ body {
     top: 50%; /*위에서 절반*/
     left: 50%; /*왼쪽에서 절반*/
     transform:translate(-50%, -50%); /*위치를 옮겨줌*/
+}
+/* 스타일링 우선순위 : id > class > tag이름*/
+.hide {
+    display: none !important;
+}
+.show {
+    display: block;
+}
 
+#contents {
+    padding: 80px 50px;
+}
+
+#box-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 90px;
+}
+
+/* box-container id선택자 하위에 있는 모든 img태그*/
+#box-container img:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+#result-message {
+    width: 50%;
+    margin: 0 auto; /*수평정렬 */
+    background-color: hsla(0, 0%, 0%, 0.805);
+    color:white;
+    padding: 20px;
+    border-radius: 30px;
+    font-size: 19px;
+    margin-top: 45px;
+    text-align: center;
 }
