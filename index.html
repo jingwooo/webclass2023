@@ -29,17 +29,29 @@
             <!--복사 = alt+shift+아래쪽 방향키-->
             <div id="box-container">
                 <div class="box">
-                    <img src="./fortune-cookie-before.png" alt="포춘쿠키">
+                    <img 
+                        src="./fortune-cookie-before.png" 
+                        alt="상자"
+                        onclick="selectCookie(1)"
+                    >
                 </div>
                 <div class="box">
-                    <img src="./fortune-cookie-before.png" alt="포춘쿠키">
+                    <img 
+                        src="./fortune-cookie-before.png" 
+                        alt="상자"
+                        onclick="selectCookie(2)"
+                    >
                 </div>
                 <div class="box">
-                    <img src="./fortune-cookie-before.png" alt="포춘쿠키">
+                    <img 
+                        src="./fortune-cookie-before.png" 
+                        alt="상자"
+                        onclick="selectCookie(3)"
+                    >
                 </div>
             </div>
             <!-- 포춘쿠키 운세 결과 보여주기-->
-            <div id="result-message">운세 결과 메세지 창입니다</div>
+            <div id="result-message">상자 내용 결과 창입니다</div>
         </div>
     </div>
     <!--자바스크립트 코드-->
@@ -65,6 +77,53 @@
 
             }
         }
+
+        //포춘쿠키가 선택되었는지 확인하는 리스트
+        const selcted = [false, false, false]
+        function selectCookie(number) {
+            //선택되지 않았을 때
+            if(selcted[number-1] == false) {
+                //window, console, document, event => 자바스크립에서 제공해주는 객체
+                const target = event.target
+                //target은 img 태그이므로 이미지가 있는 위치인 src 속성에 접근할 수 있다.
+                target.src =  "./fortune-cookie-after.png"
+                //포춘쿠키가 선택되었다는 표시 하기
+                selcted[number-1] = true
+
+                //운세 메세지 보여주기
+                showMessage()
+            } else {
+                window.alert('이미 선택된 상자입니다!!')
+            }
+        }
+
+        //운세 결과를 메세지창에 띄워주기
+        const messages = [
+            '나는 날마다, 모든 면에서, 점점 더 좋아지고 있다.',
+            '인생에 뜻을 세우는데 적당한 때는 없다.',
+            '겨울이 오면 봄이 멀지 않으리.',
+            '모든 사람들로부터 사랑받지 않아도 된다.',
+            '성공은 꿈꾸고, 믿고, 대담해지고, 실천하는데서 오는 것이다.',
+            '삶이 있는 한 희망은 있다',
+            '작은 기회로 부터 종종 위대한 업적이 시작된다',
+            '문제점을 찾지 말고 해결책을 찾으라'
+        ]
+        function showMessage(){
+            const result = document.getElementById("result-message")
+            //랜덤한 인덱스를 반환해준다.
+            let idx = getRandomInt(0,messages.length) //len(messages)
+            //운세 결과 창에 랜덤한 운세 메시지를 넣어준다.
+            result.innerText = messages[idx]
+        }
+        //mdn web docs
+        //두 정수 사이의 랜덤한 값을 반환해주는 함수
+        //참고 : https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
+        }
+
     </script>
 </body>
 </html>
